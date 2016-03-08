@@ -45,6 +45,8 @@ using QuantLib::RandomSequenceGenerator;
 
 typedef QuantLib::PseudoRandom::ursg_type UniformRandomSequenceGenerator;
 
+using QuantLib::SobolBrownianBridgeRsg;
+using QuantLib::SobolBrownianGenerator;
 using QuantLib::HaltonRsg;
 using QuantLib::SobolRsg;
 
@@ -167,6 +169,23 @@ class GaussianRandomGenerator {
 
 /************* Uniform sequence generators *************/
 
+class SobolBrownianGenerator {
+  public:
+    enum Ordering { Factors, Steps, Diagonal };
+    SobolBrownianGenerator(Size factors,
+                           Size steps,
+                           Ordering ordering);    
+};
+
+class SobolBrownianBridgeRsg {
+  public:
+    SobolBrownianBridgeRsg(Size factors, Size steps,
+	                       SobolBrownianGenerator::Ordering ordering = SobolBrownianGenerator::Diagonal,
+						   unsigned long seed = 0);
+    const Sample<std::vector<Real> >& nextSequence() const;
+	const Sample<std::vector<Real> >& lastSequence() const;
+    Size dimension() const;
+};
 
 class HaltonRsg {
   public:

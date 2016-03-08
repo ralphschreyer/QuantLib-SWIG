@@ -259,10 +259,45 @@ class GaussianMultiPathGenerator {
                                                 generator,
                                                 brownianBridge);
       }
+      GaussianMultiPathGenerator(
+                   const StochasticProcessArrayPtr& processArray,
+                   const TimeGrid& timeGrid,
+                   const GaussianRandomSequenceGenerator& generator,
+                   bool brownianBridge = false) {
+            boost::shared_ptr<StochasticProcess> process =
+                boost::dynamic_pointer_cast<StochasticProcess>(processArray);
+          return new GaussianMultiPathGenerator(process,
+                                                timeGrid,
+                                                generator,
+                                                brownianBridge);
+      }
     }
     Sample<MultiPath> next() const;
 	Sample<MultiPath> antithetic() const;
 };
 
+%{
+typedef QuantLib::MultiPathGenerator<SobolBrownianBridgeRsg>
+    GaussianSobolMultiPathGenerator;
+%}
+class GaussianSobolMultiPathGenerator {
+  public:
+    %extend {
+      GaussianSobolMultiPathGenerator(
+                   const StochasticProcessArrayPtr& processArray,
+                   const TimeGrid& timeGrid,
+                   const SobolBrownianBridgeRsg& generator,
+                   bool brownianBridge = false) {
+            boost::shared_ptr<StochasticProcess> process =
+                boost::dynamic_pointer_cast<StochasticProcess>(processArray);
+          return new GaussianSobolMultiPathGenerator(process,
+                                                     timeGrid,
+                                                     generator,
+                                                     brownianBridge);
+      }
+    }
+    Sample<MultiPath> next() const;
+	Sample<MultiPath> antithetic() const;
+};
 
 #endif
