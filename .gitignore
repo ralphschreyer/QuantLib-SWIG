@@ -25,6 +25,9 @@ Perl/quantlib_wrap.cpp
 Perl/MYMETA.yml
 Perl/MYMETA.json
 Python/QuantLib/quantlib_wrap.cpp
+Python/QLPythonVS2015/quantlib_wrap.cpp
+Python/QLPythonVS2015/dist
+Python/QLPythonVS2015/QuantLib.egg-info
 R/src/QuantLib.cpp
 R/makeRData.Rout
 R/src/symbols.rds
@@ -67,6 +70,7 @@ testCaseCollection.xml
 *.log
 *.sdf
 *.opensdf
+*.opendb
 *.pch
 *.idb
 *.ipch

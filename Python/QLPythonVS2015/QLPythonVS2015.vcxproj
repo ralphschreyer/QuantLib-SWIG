@@ -56,13 +56,8 @@
       <AdditionalLibraryDirectories>$(QL_LIB_DIR);$(PYTHONHOME)\libs</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>if not exist "$(PYTHONHOME)\Lib\site-packages\QuantLib" mkdir "$(PYTHONHOME)\Lib\site-packages\QuantLib";
-copy $(ProjectDir)\..\QuantLib\__init__.py "$(PYTHONHOME)\Lib\site-packages\QuantLib";
-copy $(OutDir)\_QuantLib.pyd "$(PYTHONHOME)\Lib\site-packages\QuantLib";
-copy $(OutDir)\QuantLib.py "$(PYTHONHOME)\Lib\site-packages\QuantLib";
-echo ----------------------------------------------------------------------------
-echo Performing test american-option.py
-python "$(ProjectDir)\..\examples\american-option.py"</Command>
+      <Command>copy $(ProjectDir)\..\QuantLib\__init__.py "$(OutDir)";
+$(ProjectDir)\setup</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
